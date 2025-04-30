@@ -37,3 +37,4 @@ Thumbs.db
 .vscode/
 *.suo
 *.njb
+.json
