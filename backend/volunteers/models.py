@@ -11,5 +11,10 @@ class Task(models.Model):
     volunteer = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
     description = models.TextField()
     assigned_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=20,
+        choices=[('assigned', 'Assigned'), ('in_progress', 'In Progress'), ('completed', 'Completed')],
+        default='assigned'
+    )
     completed_at = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('in_progress', 'In Progress'), ('completed', 'Completed')], default='pending')
