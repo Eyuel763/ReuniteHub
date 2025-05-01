@@ -17,7 +17,7 @@ static/
 media/
 
 
-venv/
+bakend/venv/
 .venv/
 env/
 __pycache__/
@@ -37,4 +37,5 @@ Thumbs.db
 .vscode/
 *.suo
 *.njb
-.json
+client_secret_836230917277-rrtp5jmcdushgv3rctfmjb671t9jbrc0.apps.googleusercontent.com.json
+backend/backend/.cph/
