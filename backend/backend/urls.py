@@ -16,6 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+from moderation.views import ModerationViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'moderation', ModerationViewSet, basename='moderation')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +30,7 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.jwt')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs
+    path('api/', include(router.urls)),
    
    
 

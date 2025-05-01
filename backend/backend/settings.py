@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'supports',
     'tips',
     'volunteers',
+    'moderation',
     "django_extensions",
     'allauth',
     'allauth.account',
