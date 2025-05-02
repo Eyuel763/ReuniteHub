@@ -6,6 +6,8 @@ class Volunteer(models.Model):
     skills = models.TextField(blank=True, null=True)
     availability = models.TextField(blank=True, null=True)
     region = models.CharField(max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Task(models.Model):
     volunteer = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
