@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from moderation.views import ModerationViewSet
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'moderation', ModerationViewSet, basename='moderation')
 
-urlpatterns = [
+urlpatterns = [ 
     path('admin/', admin.site.urls),
    
     path('auth/', include('authentication.urls')), 
@@ -31,7 +33,9 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.jwt')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs
     path('api/', include(router.urls)),
-   
+    path('api/', include('missing_persons.urls')),
    
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

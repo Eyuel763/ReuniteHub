@@ -1,15 +1,22 @@
 from django.db import models
-from django.db import models
-from django.conf import settings
+from django.contrib.auth.models import User
 
 class MissingPerson(models.Model):
-    name = models.CharField(max_length=255)
-    photo = models.FileField(upload_to='missing_person_photos/')  # Basic upload
-    age = models.IntegerField()
-    gender = models.CharField(max_length=10, choices=[('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
+    STATUS_CHOICES = [
+        ('missing', 'Missing'),
+        ('found', 'Found'),
+        ('closed', 'Closed'),
+    ]
+
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+    photo = models.ImageField(upload_to='missing_photos/')
+    description = models.TextField()
     last_seen_location = models.CharField(max_length=255)
-    status = models.CharField(max_length=20, choices=[('missing', 'Missing'), ('found', 'Found'), ('recovered', 'Recovered')], default='missing')
-    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    verified = models.BooleanField(default=False)
+    last_seen_date = models.DateField()
+    reported_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='missing')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.status}"
