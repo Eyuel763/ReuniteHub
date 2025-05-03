@@ -7,7 +7,7 @@ import Form from "../components/Form";
                 <h2 className="text-4xl text-center"> Your report could save a life. Submit securely below or via SMS (805#).</h2>
                 
             </div>
-            <div className="m-9 ml-40 sm:justify-center">
+            <div className="m-9 md:mx-40 sm:ml-0 sm:mr-0 sm:mb-72 mb-72 ">
                <p className="text-gray-400">Form</p>
                 <Form /> 
             </div>
