@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'authentication',
     'djoser',
     'alert',
@@ -153,6 +155,11 @@ REST_FRAMEWORK = {
 }
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
+   'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),  # Lifetime of access tokens
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Lifetime of refresh tokens
+    'ROTATE_REFRESH_TOKENS': True,  # Rotate refresh tokens on use
+    'BLACKLIST_AFTER_ROTATION': True,  # Blacklist old refresh tokens after rotation
+    'ALGORITHM': 'HS256',
 }
 
 MEDIA_URL = '/media/'
@@ -170,7 +177,8 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'authentication.serializers.UserCreateSerializer',
         'user': 'authentication.serializers.UserCreateSerializer',  # Customize user serializer if needed
-    }
+    }, 
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset-confirm/{uid}/{token}/',  # Frontend URL for password reset'
 }
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend
@@ -199,5 +207,10 @@ ACCOUNT_LOGIN_METHOD = 'username_email'
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+STATIC_URL = '/static/'  # URL to access static files
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Directory for project-level static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected
 
 
