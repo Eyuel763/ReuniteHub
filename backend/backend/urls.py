@@ -51,8 +51,9 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.jwt')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs
     path('api/', include(router.urls)),
-    path('api/', include('missing_persons.urls')),
+    path('api/missing_persons', include('missing_persons.urls')),
     path('api/volunteers/', include('volunteers.urls')),
+    path('api/alert/', include('alert.urls')),
 
     
     # Swagger and ReDoc URLs

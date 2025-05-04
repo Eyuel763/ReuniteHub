@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'djoser',
+    'alert',
     'missing_persons',
     'supports',
     'tips',
