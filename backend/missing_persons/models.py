@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
 
 class MissingPerson(models.Model):
     STATUS_CHOICES = [
@@ -22,6 +24,15 @@ class MissingPerson(models.Model):
         )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='missing')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def is_urgent(self):
+        if self.status == 'missing':
+            time_difference = timezone.now() - self.created_at
+            if time_difference <= timedelta(hours=72):
+                return True
+            if self.age < 18 or self.age > 60:
+                return True
+        return False
 
     def __str__(self):
         return f"{self.name} - {self.status}"

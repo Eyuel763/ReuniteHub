@@ -59,3 +59,11 @@ class SuccessStoryDetailView(generics.RetrieveAPIView):
     queryset = SuccessStory.objects.all()
     serializer_class = SuccessStorySerializer
     lookup_field = 'missing_person_id'  # Use missing_person's ID for lookup
+
+class UrgentMissingPersonListView(generics.ListAPIView):
+    serializer_class = MissingPersonSerializer
+
+    def get_queryset(self):
+        return MissingPerson.objects.filter(status='missing').filter(age__lt=18) | \
+               MissingPerson.objects.filter(status='missing').filter(age__gt=60) | \
+               MissingPerson.objects.filter(status='missing', created_at__gte=timezone.now() - timedelta(hours=72))
