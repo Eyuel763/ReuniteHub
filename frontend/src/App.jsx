@@ -1,14 +1,15 @@
-// src/App.jsx
 import React from "react";
-import { RouterProvider } from "react-router-dom";
-import router from "./router/routes";
+// import Resources from "./pages/Resources";
+import AppRoutes from "./routers/AppRoutes";
+import "./index.css"; 
 
-function App() {
+const App = () => {
   return (
-    <div className="font-sans bg-gray-50 min-h-screen text-gray-900">
-      <RouterProvider router={router} />
+    <div className="App">
+      <AppRoutes />
     </div>
   );
-}
+};
 
 export default App;
+
