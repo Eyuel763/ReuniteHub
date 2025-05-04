@@ -17,6 +17,7 @@ const Form = () => {
         blurContactDetails: false, // Added blurContactDetails field
     });
 
+    const[loding, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
 
     const scrollToForm = () => {
@@ -41,11 +42,37 @@ const Form = () => {
         setFormData({ ...formData, images: [...formData.images, ...acceptedFiles] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data Submitted:', formData);
-        // Add your form submission logic here
-        setNotification({ message: "You'r request has been submited!", type: "success" });
+        setLoading(true);
+        scrollToForm(); // Scroll to the form section
+    
+        // Introduce a delay before proceeding with the submission
+        setTimeout(async () => {
+            try {
+                const response = await fetch('/api/missing_persons/reports/', {
+                    method: 'POST', // Use POST to send data
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData), // Convert form data to JSON
+                });
+    
+                setLoading(false); // Stop loading after the delay and submission
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Form Data Submitted Successfully:', result);
+                    setNotification({ message: "Your request has been submitted!", type: "success" });
+                } else {
+                    console.error('Failed to submit form:', response.statusText);
+                    setNotification({ message: "Failed to submit your request. Please try again.", type: "error" });
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                setNotification({ message: "An error occurred. Please try again.", type: "error" });
+            }
+        }, 2000); // Delay of 2000ms (2 seconds)
     };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -58,6 +85,7 @@ const Form = () => {
     //   }, 5000);
 
     return (
+        <>{!loding ? (
         <fieldset id='success-message' className="border-2 border-gray-300 p-4 relative rounded-xl max-w-4xl ">
             <form onSubmit={handleSubmit} className="space-y-6">
                 <h1 className="text-3xl font-bold my-3.5 text-left">Missing Person Details</h1>
@@ -254,11 +282,17 @@ const Form = () => {
                 </div>
                 <button
                     type="submit"
-                    className="p-4 bg-gray-700 text-white rounded-4xl m-4 hover:bg-blue-500 transform hover:scale-110 transition duration-150 active:scale-100  w-40 h-10 flex items-center justify-center hover:cursor-pointer" onSubmit={scrollToForm}>
+                    className="p-4 bg-gray-700 text-white rounded-4xl m-4 hover:bg-blue-500 transform hover:scale-110 transition duration-150 active:scale-100  w-40 h-10 flex items-center justify-center hover:cursor-pointer">
                     Submit
                 </button>
             </form>
-        </fieldset>
+        </fieldset>):(
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-500"></div>
+            </div>
+        )}
+        </>
+        
     );
 };
 
