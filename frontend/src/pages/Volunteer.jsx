@@ -4,6 +4,7 @@ import file from "./assets/Volunteer Handbook Template.pdf";
 import { Route, Routes, Link, useParams, useNavigate } from "react-router-dom";
 import RegVolunteer from "./components/RegVolunteer";
 import VolunteerActivities from "./components/VolunteerActivities";
+import Testimonials from "./components/Testimonials";
 
 
 
@@ -82,7 +83,7 @@ function Volunteer() {
             </p>
           </div>
         </div>
-        <div className="bg-gray-50 flex flex-col items-center justify-center p-4">
+        <div className="bg-gray-50 flex flex-col  justify-center p-4">
           <div className="bg-gray-100 w-full h-auto  flex flex-col items-start overflow-hidden p-4 m-2">
             <p className="text-black text-left text-2xl m-2 font-bold">
               Join Our Volunteer Network
@@ -98,8 +99,8 @@ function Volunteer() {
               Register as Volunteer
             </button>
           </div>
-          <div className="bg-yellow-400 w-full h-auto m-2 rounded-lg ">
-            <div className="bg-yellow-50 w-full h-auto flex flex-col items-start overflow-hidden p-6 ml-1 rounded-lg space-y-2">
+          <div className="bg-yellow-400  h-auto m-2 rounded-lg ">
+            <div className="bg-yellow-50  h-auto flex flex-col items-start overflow-hidden p-6 ml-1 rounded-lg space-y-2">
               <p className="text-black text-left text-2xl m-2 font-bold">
                 Training & Saftey
               </p>
@@ -127,8 +128,11 @@ function Volunteer() {
               </button>
             </div>
           </div>
-          <div>
+          <div className=" items-start">
             <VolunteerActivities />
+          </div>
+          <div className=" text-black">
+            <Testimonials/>
           </div>
         </div>
       </div>
@@ -136,4 +140,3 @@ function Volunteer() {
 }
 
 export default Volunteer;
-
