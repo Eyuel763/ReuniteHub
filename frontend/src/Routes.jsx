@@ -6,6 +6,7 @@ import SubmitForm from "./Pages/SubmitForm.jsx";
 import Volunteer from "./Pages/Volunteer.jsx";
 import Resources from "./Pages/Resources.jsx"; 
 import AlertsMaps from "./Pages/AlertsMaps.jsx"; 
+import Error_page from "./pages/Error_page.jsx"; // Import the ErrorPage component
 const router = createBrowserRouter([
     {
       path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         {
           path: "/alertsmaps",  
           element: <AlertsMaps />,
+        },
+        {
+          path: "*",
+          element:<Error_page />,
         }
         
       ],
