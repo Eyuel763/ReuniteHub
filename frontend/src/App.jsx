@@ -1,14 +1,9 @@
-import './App.css'
-import SubmitForm from './pages/SubmitForm'
+import { RouterProvider } from 'react-router-dom';
+import router from './Routes.jsx';
+import './index.css';
 
 function App() {
-  
-
-  return (
-    <>
-      
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

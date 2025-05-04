@@ -1,4 +1,4 @@
-import Form from "../components/Form";
+import Form from '../Componenets/Form.jsx';
     const SubmitForm = () => {
         return (
             <>
