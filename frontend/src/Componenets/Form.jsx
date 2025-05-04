@@ -45,6 +45,7 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        scrollToForm(); // Scroll to the form section
     
         // Introduce a delay before proceeding with the submission
         setTimeout(async () => {
@@ -281,7 +282,7 @@ const Form = () => {
                 </div>
                 <button
                     type="submit"
-                    className="p-4 bg-gray-700 text-white rounded-4xl m-4 hover:bg-blue-500 transform hover:scale-110 transition duration-150 active:scale-100  w-40 h-10 flex items-center justify-center hover:cursor-pointer" onSubmit={scrollToForm}>
+                    className="p-4 bg-gray-700 text-white rounded-4xl m-4 hover:bg-blue-500 transform hover:scale-110 transition duration-150 active:scale-100  w-40 h-10 flex items-center justify-center hover:cursor-pointer">
                     Submit
                 </button>
             </form>
