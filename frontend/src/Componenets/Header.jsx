@@ -33,6 +33,9 @@ const Header = () => {
           <Link to="/" className="text-gray-600 hover:text-blue-500 transition-colors">
             Home
           </Link>
+          <Link to="/alertsmap" className="text-gray-600 hover:text-blue-500 transition-colors">
+            Alerts & Map
+          </Link>
           <Link to="/Volunteer" className="text-gray-600 hover:text-blue-500 transition-colors">
             Volunteer
           </Link>
@@ -102,6 +105,9 @@ const Header = () => {
         <div className="p-4 flex flex-col space-y-4">
           <Link to="/" className="text-gray-600 hover:text-blue-500 transition-colors py-2">
             Home
+          </Link>
+          <Link to="/alertsmap" className="text-gray-600 hover:text-blue-500 transition-colors py-2">
+            Alerts & Map
           </Link>
           <Link to="/contact" className="text-gray-600 hover:text-blue-500 transition-colors py-2">
             Contact

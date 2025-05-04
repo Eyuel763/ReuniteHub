@@ -5,6 +5,7 @@ import SubmitForm from "./Pages/SubmitForm.jsx";
 import Volunteer from "./Pages/Volunteer.jsx";
 import Resources from "./Pages/Resources.jsx"; // Import the Resources component
 import Error_page from "./pages/Error_page.jsx"; // Import the ErrorPage component
+import AlertsMaps from "./Pages/AlertsMaps.jsx"; // Import the AlertsMaps component
 const router = createBrowserRouter([
   {
     path: "/",
