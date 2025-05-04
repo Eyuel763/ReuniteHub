@@ -34,4 +34,9 @@ class SendAlertView(APIView):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get(self, request):
+        alerts = Alert.objects.all()  
+        serializer = AlertSerializer(alerts, many=True)
+        return Response(serializer.data)
 
