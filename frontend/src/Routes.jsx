@@ -1,11 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Componenets/Layout.jsx";
 import Home from "./Pages/Home.jsx";
-import About from "./Pages/About.jsx";
 import SubmitForm from "./Pages/SubmitForm.jsx";
 import Volunteer from "./Pages/Volunteer.jsx";
-import Resources from "./Pages/Resources.jsx"; 
-import AlertsMaps from "./Pages/AlertsMaps.jsx"; 
+import Resources from "./Pages/Resources.jsx"; // Import the Resources component
 const router = createBrowserRouter([
     {
       path: "/",
@@ -14,10 +12,6 @@ const router = createBrowserRouter([
         {
           path: "/",
           element: <Home />,
-        },
-        {
-          path: "/about",
-          element: <About />,
         },
         {
           path: "/submitform",
@@ -30,14 +24,10 @@ const router = createBrowserRouter([
         {
           path: "/Resources",
           element: <Resources />, 
-        },
-        {
-          path: "/alertsmaps",  
-          element: <AlertsMaps />,
         }
         
       ],
     },
   ]);
 
-export default router; // ✅ Correct (default export)
+export default router; 

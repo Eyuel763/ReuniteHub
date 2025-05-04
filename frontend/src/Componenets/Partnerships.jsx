@@ -21,7 +21,7 @@ const Partners = () => {
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Centered Header */}
-        <div className="text-center mb-8"> {/* Reduced margin-bottom */}
+        <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center gap-2 mb-3 text-blue-600">
             <FaHandshake className="text-2xl" />
             <span className="font-semibold">OUR PARTNERS</span>
@@ -32,8 +32,8 @@ const Partners = () => {
           </p>
         </div>
 
-        {/* Closer Logo Distribution */}
-        <div className="flex justify-center gap-8 md:gap-12"> {/* Adjusted gap */}
+        {/* Adjusted Logo Distribution */}
+        <div className="flex justify-evenly gap-6 md:gap-10 flex-wrap">
           {partners.map((partner) => (
             <a
               key={partner.id}
@@ -45,8 +45,8 @@ const Partners = () => {
               <img 
                 src={partner.logo} 
                 alt={partner.name}
-                className="h-16 w-auto" // Uniform height
-                style={{ maxWidth: '120px' }} // Control logo width
+                className="h-12 w-auto" // Slightly larger height
+                style={{ maxWidth: '100px' }} // Adjusted logo width
               />
             </a>
           ))}

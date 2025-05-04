@@ -1,5 +1,6 @@
 import React from "react";
-import { FaSearch, FaUserPlus } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import Hero from '../assets/family reunion.jpg'; // Assuming you have a Hero image in the assets folder
 
 const HeroSection = () => {
@@ -24,12 +25,12 @@ const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg flex items-center justify-center gap-2 transition duration-300">
+          <Link
+            to="/submitform" // Navigate to the submitform page
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg flex items-center justify-center gap-2 transition duration-300"
+          >
             <FaUserPlus /> Report a missing person
-          </button>
-          <button className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 px-8 rounded-lg text-lg flex items-center justify-center gap-2 transition duration-300">
-            <FaSearch /> Search the database
-          </button>
+          </Link>
         </div>
       </div>
     </section>
