@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "type": "Search Party",
+    "title": "Community Search for Missing Elder",
+    "description": "Join a coordinated search effort to locate a missing elderly man last seen near the riverbank.",
+    "date": "May 6, 2025",
+    "location": "Addis Ababa, Gullele",
+    "moderator": {
+      "name": "Lensa Tadesse",
+      "contact": "+251912345678"
+    }
+  },
+  {
+    "id": 2,
+    "type": "Flyer Distribution",
+    "title": "Awareness Flyers for Missing Children",
+    "description": "Help distribute flyers across the Bole and Sar Bet areas to raise awareness.",
+    "date": "May 7, 2025",
+    "location": "Addis Ababa, Bole",
+    "moderator": {
+      "name": "Musa Alemu",
+      "contact": "+251911223344"
+    }
+  },
+  {
+    "id": 3,
+    "type": "Training",
+    "title": "Volunteer Training Workshop",
+    "description": "A training session for new volunteers on effective search and rescue methods.",
+    "date": "May 10, 2025",
+    "location": "Addis Ababa, Kazanchis",
+    "moderator": {
+      "name": "Hana Berhane",
+      "contact": "+251930112233"
+    }
+  },
+  {
+    "id": 4,
+    "type": "Other",
+    "title": "Call Center Support",
+    "description": "Assist in taking and logging reports from the public regarding missing persons.",
+    "date": "May 8, 2025",
+    "location": "Addis Ababa, Mexico",
+    "moderator": {
+      "name": "Samuel Yohannes",
+      "contact": "+251934556677"
+    }
+  }
+]
