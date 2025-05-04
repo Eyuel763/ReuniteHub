@@ -41,11 +41,30 @@ const Form = () => {
         setFormData({ ...formData, images: [...formData.images, ...acceptedFiles] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data Submitted:', formData);
-        // Add your form submission logic here
-        setNotification({ message: "You'r request has been submited!", type: "success" });
+    
+        try {
+            const response = await fetch('/api/missing_persons/reports/', {
+                method: 'POST', // Use POST to send data
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData), // Convert form data to JSON
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Form Data Submitted Successfully:', result);
+                setNotification({ message: "Your request has been submitted!", type: "success" });
+            } else {
+                console.error('Failed to submit form:', response.statusText);
+                setNotification({ message: "Failed to submit your request. Please try again.", type: "error" });
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setNotification({ message: "An error occurred. Please try again.", type: "error" });
+        }
     };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
