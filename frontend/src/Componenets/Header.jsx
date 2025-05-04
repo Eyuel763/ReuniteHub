@@ -66,9 +66,12 @@ const Header = () => {
           >
             Report
           </Link>
-          <button className="px-3 py-1.5 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm">
+          <Link
+            to="/login"
+            className="px-3 py-1.5 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm"
+          >
             Login
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Button (visible only on mobile) */}
@@ -140,9 +143,12 @@ const Header = () => {
             >
               Report
             </Link>
-            <button className="w-full px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm">
+            <Link
+              to="/login"
+              className="w-full px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm"
+            >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
