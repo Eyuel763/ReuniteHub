@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # Add Google provider
     'allauth.socialaccount.providers.facebook',  # Add Facebook provider (optional)
+    'drf_yasg',
     
 ]
 
