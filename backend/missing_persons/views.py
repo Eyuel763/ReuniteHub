@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, status, filters
+from rest_framework import viewsets, permissions, status, filters, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import MissingPerson
-from .serializers import MissingPersonSerializer
+from .models import MissingPerson, SuccessStory
+from .serializers import MissingPersonSerializer, SuccessStorySerializer
 from django.utils import timezone
 from datetime import timedelta
 # Removed unnecessary import as IsOwnerOrAdmin is defined in this file
@@ -50,3 +50,20 @@ class MissingPersonViewSet(viewsets.ModelViewSet):
         recent_reports = MissingPerson.objects.filter(created_at__gte=seven_days_ago)
         serializer = self.get_serializer(recent_reports, many=True)
         return Response(serializer.data)
+    
+class SuccessStoryListView(generics.ListAPIView):
+    queryset = SuccessStory.objects.all()
+    serializer_class = SuccessStorySerializer
+
+class SuccessStoryDetailView(generics.RetrieveAPIView):
+    queryset = SuccessStory.objects.all()
+    serializer_class = SuccessStorySerializer
+    lookup_field = 'missing_person_id'  # Use missing_person's ID for lookup
+
+class UrgentMissingPersonListView(generics.ListAPIView):
+    serializer_class = MissingPersonSerializer
+
+    def get_queryset(self):
+        return MissingPerson.objects.filter(status='missing').filter(age__lt=18) | \
+               MissingPerson.objects.filter(status='missing').filter(age__gt=60) | \
+               MissingPerson.objects.filter(status='missing', created_at__gte=timezone.now() - timedelta(hours=72))

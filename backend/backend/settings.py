@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'authentication',
     'djoser',
+    'alert',
     'missing_persons',
     'supports',
     'tips',
