@@ -13,6 +13,8 @@ class MissingPerson(models.Model):
     
     name = models.CharField(max_length=100)
     age = models.PositiveIntegerField()
+    gender = models.CharField(max_length=10, choices=[('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
+    contact_info = models.CharField(max_length=255, blank=True, null=True)
     photo = models.ImageField(upload_to='missing_photos/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     last_seen_location = models.CharField(max_length=255)
