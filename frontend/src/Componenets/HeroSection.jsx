@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Import Link for navigation
-import Hero from '../assets/family reunion.jpg'; 
+import Hero from '../assets/pexels-rdne-6148876.jpg'; 
 
 const HeroSection = () => {
   return (
@@ -19,11 +19,11 @@ const HeroSection = () => {
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto text-white">
+      <div className="relative z-10 text-left px-4 max-w-4xl mx-auto text-gray-700">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           We help bring your loved ones home
         </h1>
-        <p className="text-xl md:text-2xl mb-10">
+        <p className="text-xl text-gray-700 md:text-2xl mb-10">
           Report, search, and reunite - together
         </p>
 

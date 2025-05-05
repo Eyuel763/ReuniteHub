@@ -53,7 +53,9 @@ const Form = () => {
         // Introduce a delay before proceeding with the submission
         setTimeout(async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/missing_persons', {
+                const response = await fetch('http://127.0.0.1:8000/api/missing_personsreports',
+                    {
+
                     method: 'POST', // Use POST to send data
                     headers: {
                         'Content-Type': 'application/json', // Ensure JSON content type
