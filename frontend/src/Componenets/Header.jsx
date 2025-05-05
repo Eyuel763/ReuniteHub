@@ -136,10 +136,10 @@ const Header = () => {
             </div>
           )}
 
-          <div className="border-t border-gray-200 pt-4">
+          <div className="border-t border-gray-200 pt-4 flex flex-col space-y-2">
             <Link
               to="/submitform"
-              className="w-full px-3 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-colors text-sm mb-2"
+              className="w-full px-3 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-colors text-sm"
             >
               Report
             </Link>

@@ -7,7 +7,7 @@ import SearchParty from "../Componenets/SearchParty";
 import PrivacyNotice from "../Componenets/PrivacyNotice";
 import PartnerFeed from "../Componenets/PartnerFeed";
 
-const AlertsMapPage = () => {
+const AlertsMaps = () => {
   const [alerts, setAlerts] = useState([
     {
       id: 1,
@@ -39,4 +39,4 @@ const AlertsMapPage = () => {
   );
 };
 
-export default AlertsMapPage;
+export default AlertsMaps;
