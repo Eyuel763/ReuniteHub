@@ -27,6 +27,11 @@ const Form = () => {
         }
     };
 
+    const removeImage = (index) => {
+        const updatedImages = formData.images.filter((_, i) => i !== index);
+        setFormData({ ...formData, images: updatedImages });
+    };
+
     const [notification, setNotification] = useState({ message: "", type: "" });
 
     const handleChange = (e) => {
@@ -176,11 +181,16 @@ const Form = () => {
                                 className="border-2 border-gray-200 hover:cursor-pointer p-2 rounded-l w-full focus:outline-none">
 
                                 <option value="" disabled>Select location</option>
-                                <option value="new-york">New York</option>
-                                <option value="los-angeles">Los Angeles</option>
-                                <option value="chicago">Chicago</option>
-                                <option value="houston">Houston</option>
-                                <option value="miami">Miami</option>
+                                <option value="addis-ababa">Addis Ababa</option>
+                                <option value="dire-dawa">Dire Dawa</option>
+                                <option value="mekelle">Mekelle</option>
+                                <option value="bahir-dar">Bahir Dar</option>
+                                <option value="gondar">Gondar</option>
+                                <option value="hawassa">Hawassa</option>
+                                <option value="jimma">Jimma</option>
+                                <option value="harar">Harar</option>
+                                <option value="adama">Adama</option>
+                                <option value="debre-birhan">Debre Birhan</option>
                             </select>
                         </div>
                         <h1 className="text-3xl font-bold my-3.5 text-left">Upload Photos</h1>
@@ -215,8 +225,12 @@ const Form = () => {
                         {formData.images.length > 0 && (
                             <ul className="mt-2 text-left m-3">
                                 {formData.images.map((file, index) => (
-                                    <li key={index} className="text-green-500">
-                                        {file.name}
+                                    <li key={index} className="text-green-500 bg-green-50 rounded-l flex items-center justify-between m-1.5">
+                                        <span>{file.name}</span>
+                                        <IoIosClose
+                                            className="text-red-500 text-4xl cursor-pointer hover:text-red-700 transition-transform transform hover:scale-150"
+                                            onClick={() => removeImage(index)}
+                                        />
                                     </li>
                                 ))}
                             </ul>
@@ -253,6 +267,7 @@ const Form = () => {
                                 required
                                 className="border-2 border-gray-300 p-2 rounded-l w-full focus:outline-none"
                                 placeholder="+251"
+                                pattern="^\+?[0-9]*$"
                             />
                         </div>
                         <div className="m-5 ">
@@ -295,7 +310,7 @@ const Form = () => {
                     </form>
                 </fieldset>):(
                     <div className="flex justify-center items-center h-screen">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-500"></div>
+                        <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-black-700 "></div>
                     </div>
             )}
         </>
