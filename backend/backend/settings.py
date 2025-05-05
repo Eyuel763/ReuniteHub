@@ -209,8 +209,13 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
-STATIC_URL = '/static/'  # URL to access static files
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Directory for project-level static files
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected
+#STATIC_URL = '/static/'  # URL to access static files
+#STATICFILES_DIRS = [BASE_DIR / 'static']  # Directory for project-level static files
+#STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Your React dev server
+    "http://127.0.0.1:3000",
+]
 
 

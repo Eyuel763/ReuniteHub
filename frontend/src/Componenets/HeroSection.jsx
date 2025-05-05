@@ -15,7 +15,6 @@ const HeroSection = () => {
         style={{
           objectFit: "cover", // Ensures the image covers the container
           objectPosition: "center", // Centers the image
-          transform: "scale(1.2)", // Zoom out effect
         }}
       />
 
