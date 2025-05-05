@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <h1>Welcome to the Home Page</h1>
-    
-    <!-- Google Login Button -->
+
     <a href="/accounts/google/login/" style="text-decoration: none;">
         <button style="padding: 10px 20px; background-color: #4285F4; color: white; border: none; border-radius: 5px; cursor: pointer;">
             Login with Google
