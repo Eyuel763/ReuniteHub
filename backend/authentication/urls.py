@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import check_username
 
 urlpatterns = [
-    path('home/', views.home, name='home'),
+    path('check-username/', check_username, name='check-username'),
 ]

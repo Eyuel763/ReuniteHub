@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { debounce } from 'lodash';
 import '../Auth.css';
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -22,6 +23,8 @@ const SignupPage = () => {
     suggestions: [],
   });
   const [formValid, setFormValid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   // Check overall form validity
   useEffect(() => {
@@ -29,6 +32,7 @@ const SignupPage = () => {
       usernameStatus.available === true &&
       formData.username.length >= 3 &&
       formData.email &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && // Email validation
       formData.password &&
       formData.password === formData.confirmPassword &&
       formData.password.length >= 8;
@@ -51,9 +55,10 @@ const SignupPage = () => {
     setUsernameStatus((prev) => ({ ...prev, loading: true, message: 'Checking...' }));
 
     try {
-      const response = await axios.get('/api/auth/check-username/', {
+      const response = await axios.get('http://localhost:8000/auth/check-username/', {
         params: { username },
       });
+      
 
       setUsernameStatus({
         loading: false,
@@ -84,19 +89,23 @@ const SignupPage = () => {
       ...prev,
       [name]: value,
     }));
+    setError(null); // Clear error when user makes changes
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError(null);
+    
     if (!formValid) {
-      alert('Please fill all required fields correctly');
+      setError('Please fill all required fields correctly');
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       const response = await axios.post(
-        'http://your-django-server/api/register/',
+        'http://localhost:8000/api/auth/users/',
         {
           username: formData.username,
           email: formData.email,
@@ -109,33 +118,31 @@ const SignupPage = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken'),
           },
         }
       );
 
       console.log('Registration successful:', response.data);
-      window.location.href = '/login';
+      navigate('/login', { state: { registrationSuccess: true } });
     } catch (error) {
       console.error('Registration failed:', error.response?.data || error.message);
-      alert(error.response?.data?.error || 'Registration failed');
-    }
-  };
-
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === name + '=') {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
+      
+      let errorMessage = 'Registration failed';
+      if (error.response?.data) {
+        if (error.response.data.email) {
+          errorMessage = error.response.data.email[0];
+        } else if (error.response.data.username) {
+          errorMessage = error.response.data.username[0];
+        } else if (error.response.data.non_field_errors) {
+          errorMessage = error.response.data.non_field_errors[0];
         }
       }
+      
+      setError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
     }
-    return cookieValue;
-  }
+  };
 
   return (
     <div className="auth-page">
@@ -143,24 +150,33 @@ const SignupPage = () => {
         <div className="auth-box">
           <h2>Create Account</h2>
           <p>Fill in the details to register</p>
+          
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
+
           <form className="auth-form" onSubmit={handleSubmit}>
             {/* Personal Information */}
             <div className="form-row">
               <input
                 type="text"
                 name="first_name"
-                placeholder="First Name"
+                placeholder="First Name*"
                 maxLength={150}
                 value={formData.first_name}
                 onChange={handleChange}
+                required
               />
               <input
                 type="text"
                 name="last_name"
-                placeholder="Last Name"
+                placeholder="Last Name*"
                 maxLength={150}
                 value={formData.last_name}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -183,6 +199,7 @@ const SignupPage = () => {
                 maxLength={150}
                 value={formData.username}
                 onChange={handleChange}
+                className={usernameStatus.message && !usernameStatus.available ? 'is-invalid' : ''}
               />
               {usernameStatus.loading && (
                 <div className="status loading">{usernameStatus.message}</div>
@@ -243,7 +260,11 @@ const SignupPage = () => {
               required
               value={formData.confirmPassword}
               onChange={handleChange}
+              className={formData.password && formData.password !== formData.confirmPassword ? 'is-invalid' : ''}
             />
+            {formData.password && formData.password !== formData.confirmPassword && (
+              <div className="invalid-feedback">Passwords don't match</div>
+            )}
 
             {/* Enhanced Role Selection */}
             <div className="role-section">
@@ -330,14 +351,14 @@ const SignupPage = () => {
             <button
               type="submit"
               className="auth-button"
-              disabled={!formValid}
+              disabled={!formValid || isSubmitting}
             >
-              {usernameStatus.loading ? 'Verifying...' : 'Create Account'}
+              {isSubmitting ? 'Creating Account...' : 'Create Account'}
             </button>
           </form>
 
           <div className="auth-link">
-            Already have an account? <Link to="/">Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </div>
         </div>
       </div>
