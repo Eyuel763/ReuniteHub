@@ -1,0 +1,295 @@
+.auth-page {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #efeff0, #f1edf5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+.auth-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-box h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.auth-box p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #667eea;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: #5a67d8;
+}
+
+.auth-options {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-options a {
+  text-decoration: none;
+  color: #667eea;
+}
+.auth-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px; 
+}
+.auth-options input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+
+.auth-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+.role-select {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.role-select label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Form Row */
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+margin-bottom: 10px;
+}
+
+/* Role Selection Styles */
+.role-section {
+margin: 20px 0;
+}
+
+.role-title {
+color: #555;
+margin-bottom: 15px;
+font-size: 15px;
+text-align: left;
+}
+
+.role-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+}
+
+.role-card {
+background: #f8f9fa;
+border: 1px solid #e0e0e0;
+border-radius: 8px;
+padding: 12px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.role-card:hover {
+border-color: #c1c1c1;
+}
+
+.role-card.active {
+border-color: #667eea;
+background-color: rgba(102, 126, 234, 0.1);
+box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.role-content {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+}
+
+.role-icon {
+font-size: 24px;
+}
+
+.role-name {
+font-size: 13px;
+color: #444;
+font-weight: 500;
+}
+
+/* Adjust existing button style */
+.auth-button {
+margin-top: 5px;
+}
+
+/* Login Specific Styles */
+.auth-subtitle {
+color: #666;
+margin-bottom: 2rem;
+}
+
+.checkbox-label {
+display: flex;
+align-items: center;
+gap: 8px;
+color: #555;
+cursor: pointer;
+}
+
+.checkbox-label input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+
+.checkmark {
+display: inline-block;
+width: 18px;
+height: 18px;
+background: white;
+border: 1px solid #ccc;
+border-radius: 4px;
+position: relative;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+background: #667eea;
+border-color: #667eea;
+}
+
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+left: 6px;
+top: 2px;
+width: 4px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+display: block;
+}
+
+.forgot-password {
+color: #667eea;
+text-decoration: none;
+font-size: 14px;
+transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+color: #5a67d8;
+}
+
+.auth-footer {
+margin-top: 1.5rem;
+color: #666;
+font-size: 14px;
+}
+
+.auth-footer .auth-link {
+font-weight: 500;
+}
+/* Username Check Styles */
+.form-group {
+position: relative;
+margin-bottom: 15px;
+}
+
+.status {
+font-size: 0.8rem;
+padding: 4px 0;
+margin-top: -8px;
+}
+
+.status.loading {
+color: #666;
+}
+
+.status.success {
+color: #28a745;
+}
+
+.status.error {
+color: #dc3545;
+}
+
+.suggestions {
+margin-top: 4px;
+font-size: 0.75rem;
+}
+
+.suggestion {
+display: inline-block;
+margin-right: 8px;
+color: #6c757d;
+cursor: pointer;
+}
+
+.suggestion:hover {
+text-decoration: underline;
+color: #007bff;
+}
+
+/* Disabled button style */
+.auth-button:disabled {
+background-color: #cccccc;
+cursor: not-allowed;
+opacity: 0.7;
+}

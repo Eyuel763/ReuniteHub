@@ -1,0 +1,41 @@
+# Django project specific
+backend/db.sqlite3
+backend/__pycache__/
+backend/*/migrations/
+backend/*/static/  
+backend/*/media/   
+backend/venv/      
+backend/*.pyc
+backend/*.log
+backend/*.env
+.env             
+*.swp           
+*~               
+
+
+static/
+media/
+
+
+bakend/venv/
+.venv/
+env/
+__pycache__/
+.env
+db.sqlite3
+*.pyc
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor/IDE specific
+.idea/
+.vscode/
+*.suo
+*.njb
+client_secret_836230917277-rrtp5jmcdushgv3rctfmjb671t9jbrc0.apps.googleusercontent.com.json
+backend/backend/.cph/
