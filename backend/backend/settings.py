@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',  # Add Google provider
     'allauth.socialaccount.providers.facebook',  # Add Facebook provider (optional)
     'drf_yasg',
+    'corsheaders',  # CORS headers for API
     
 ]
 
@@ -214,8 +215,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 #STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Your React dev server
-    "http://127.0.0.1:3000",
+    "http://localhost:5173",  # React frontend URL
 ]
 
 
