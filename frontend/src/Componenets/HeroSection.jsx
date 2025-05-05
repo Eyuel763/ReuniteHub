@@ -1,17 +1,22 @@
 import React from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Import Link for navigation
-import Hero from '../assets/family reunion.jpg'; // Assuming you have a Hero image in the assets folder
+import Hero from '../assets/family reunion.jpg'; 
 
 const HeroSection = () => {
   return (
     <section className="relative h-screen flex items-center justify-center bg-cover bg-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-30"></div> {/* Reduced opacity */}
       <img
         src={Hero}
         alt="Family reunion"
         className="absolute w-full h-full object-cover"
+        style={{
+          objectFit: "cover", // Ensures the image covers the container
+          objectPosition: "center", // Centers the image
+          transform: "scale(1.2)", // Zoom out effect
+        }}
       />
 
       {/* Hero Content */}

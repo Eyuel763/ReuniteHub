@@ -33,7 +33,7 @@ const Header = () => {
           <Link to="/" className="text-gray-600 hover:text-blue-500 transition-colors">
             Home
           </Link>
-          <Link to="/alertsmap" className="text-gray-600 hover:text-blue-500 transition-colors">
+          <Link to="/alertsmaps" className="text-gray-600 hover:text-blue-500 transition-colors">
             Alerts & Map
           </Link>
           <Link to="/Volunteer" className="text-gray-600 hover:text-blue-500 transition-colors">
@@ -66,9 +66,12 @@ const Header = () => {
           >
             Report
           </Link>
-          <button className="px-3 py-1.5 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm">
+          <Link
+            to="/login"
+            className="px-3 py-1.5 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm"
+          >
             Login
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Button (visible only on mobile) */}
@@ -133,16 +136,19 @@ const Header = () => {
             </div>
           )}
 
-          <div className="border-t border-gray-200 pt-4">
+          <div className="border-t border-gray-200 pt-4 flex flex-col space-y-2">
             <Link
               to="/submitform"
-              className="w-full px-3 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-colors text-sm mb-2"
+              className="w-full px-3 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-colors text-sm"
             >
               Report
             </Link>
-            <button className="w-full px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm">
+            <Link
+              to="/login"
+              className="w-full px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors text-sm"
+            >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
