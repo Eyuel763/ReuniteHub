@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const mockUrgentCases = [
   {
@@ -38,12 +39,55 @@ const mockUrgentCases = [
     reported_by: "Oakwood Staff",
     created_at: "2023-05-20T11:45:00Z",
   },
+  {
+    missing_person_id: 4,
+    name: "James Wilson",
+    age: 8,
+    photo: "https://randomuser.me/api/portraits/men/22.jpg",
+    last_seen_location: "Riverside Elementary School playground",
+    last_seen_date: "2023-05-21T15:30:00Z",
+    status: "urgent",
+    description: "Third grader missing after school. Wearing a blue superhero backpack.",
+    reported_by: "School Administration",
+    created_at: "2023-05-21T17:00:00Z",
+  },
+  {
+    missing_person_id: 5,
+    name: "Emily Rodriguez",
+    age: 24,
+    photo: "https://randomuser.me/api/portraits/women/33.jpg",
+    last_seen_location: "Midtown Cafe, Chicago",
+    last_seen_date: "2023-05-22T19:00:00Z",
+    status: "urgent",
+    description: "Did not return home from work. Last seen wearing black pants and a red blouse.",
+    reported_by: "Carlos Rodriguez (husband)",
+    created_at: "2023-05-23T08:20:00Z",
+  },
 ];
 
 const UrgentCases = () => {
   const [urgentCases, setUrgentCases] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const scrollContainerRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -300,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 300,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const fetchUrgentCases = async () => {
     try {
@@ -73,17 +117,42 @@ const UrgentCases = () => {
     fetchUrgentCases();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-center py-8">Loading urgent cases...</p>;
+  if (error) return <p className="text-center py-8 text-red-500">{error}</p>;
 
   return (
-    <div className="urgent-cases-container">
-      <h1 className="text-3xl font-bold mb-6">Urgent Cases</h1>
-      <div className="flex flex-wrap gap-6 justify-center">
+    <div className="urgent-cases-container relative p-4 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex-grow text-center">
+          <h1 className="text-3xl font-bold inline-block">Urgent Cases</h1>
+        </div>
+        <div className="flex space-x-2">
+          <button 
+            onClick={scrollLeft}
+            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+            aria-label="Scroll left"
+          >
+            <FiChevronLeft className="text-gray-700" size={20} />
+          </button>
+          <button 
+            onClick={scrollRight}
+            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+            aria-label="Scroll right"
+          >
+            <FiChevronRight className="text-gray-700" size={20} />
+          </button>
+        </div>
+      </div>
+      
+      <div 
+        ref={scrollContainerRef}
+        className="flex space-x-6 overflow-x-auto py-4 px-2 scrollbar-hide"
+        style={{ scrollbarWidth: 'none' }}
+      >
         {urgentCases.map((caseItem) => (
           <div
             key={caseItem.missing_person_id}
-            className="card bg-white shadow-md rounded-lg overflow-hidden w-64"
+            className="card bg-white shadow-md rounded-lg overflow-hidden w-64 flex-shrink-0 hover:shadow-lg transition-shadow"
           >
             <img
               src={caseItem.photo}
@@ -91,8 +160,8 @@ const UrgentCases = () => {
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              <h2 className="text-lg font-bold">{caseItem.name}</h2>
-              <p className="text-sm text-gray-600">{caseItem.description}</p>
+              <h2 className="text-lg font-bold">{caseItem.name}, {caseItem.age}</h2>
+              <p className="text-sm text-gray-600 line-clamp-2">{caseItem.description}</p>
               <p className="text-sm text-gray-500 mt-2">
                 Last seen: {caseItem.last_seen_location}
               </p>

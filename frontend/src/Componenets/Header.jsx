@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import logo from '../assets/Logo.png'; // Update this path
+import { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import logo from "../assets/Logo.png"; // Update this path
 
 const Header = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const isHome = pathname === '/';
+  const isHome = pathname === "/";
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // Homepage navigation items with color classes
+  // Homepage navigation items with links to sections
   const homeNavItems = [
-    { label: 'Urgent Cases', colorClass: 'text-red-500 hover:text-red-600' },
-    { label: 'Recent Alerts', colorClass: 'text-yellow-500 hover:text-yellow-600' },
-    { label: 'Success Stories', colorClass: 'text-purple-500 hover:text-purple-600' },
+    { label: "Urgent Cases", link: "#urgent-cases", colorClass: "text-red-500 hover:text-red-600" },
+    { label: "Success Stories", link: "#success-stories", colorClass: "text-purple-500 hover:text-purple-600" },
   ];
 
   return (
@@ -47,12 +46,13 @@ const Header = () => {
           {isHome && (
             <div className="flex space-x-6 ml-4">
               {homeNavItems.map((item, index) => (
-                <span
+                <a
                   key={index}
+                  href={item.link} // Use hash navigation to scroll to sections
                   className={`${item.colorClass} transition-colors cursor-pointer`}
                 >
                   {item.label}
-                </span>
+                </a>
               ))}
             </div>
           )}
@@ -102,7 +102,7 @@ const Header = () => {
       {/* Mobile Menu (slides in from right) */}
       <div
         className={`md:hidden fixed inset-y-0 right-0 w-64 bg-white shadow-xl transform ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="p-4 flex flex-col space-y-4">
@@ -126,12 +126,13 @@ const Header = () => {
           {isHome && (
             <div className="flex flex-col space-y-3 pt-2">
               {homeNavItems.map((item, index) => (
-                <span
+                <a
                   key={index}
+                  href={item.link} // Use hash navigation to scroll to sections
                   className={`${item.colorClass} py-2 transition-colors`}
                 >
                   {item.label}
-                </span>
+                </a>
               ))}
             </div>
           )}
