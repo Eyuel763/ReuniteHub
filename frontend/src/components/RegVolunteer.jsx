@@ -48,30 +48,43 @@ const RegVolunteer = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email || !formData.phone) {
-      alert("Please fill in all required fields.");
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("https://your-api.com/volunteer/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  if (
+    !formData.fullName ||
+    !formData.email ||
+    !formData.phone ||
+    !formData.volunteerSkill
+  ) {
+    alert("Please fill in all required fields.");
+    return;
+  }
 
-      const data = await response.json();
-      if (response.ok) {
-        alert("Registration successful!");
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
+  const payload = {
+    skills: formData.volunteerSkill,
+    availability: "Weekends", 
+    region: formData.region,
   };
+
+  try {
+    const response = await fetch("http://localhost:8000/volunteers/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert("Registration successful!");
+    } else {
+      alert(`Error: ${JSON.stringify(data)}`);
+    }
+  } catch (error) {
+    console.error("Registration failed:", error);
+    alert("An unexpected error occurred.");
+  }
+};
 
   const regionKeys = Object.keys(regions);
   const cities = formData.region ? regions[formData.region] : [];
