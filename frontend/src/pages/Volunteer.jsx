@@ -5,6 +5,8 @@ import { Route, Routes, Link, useParams, useNavigate } from "react-router-dom";
 import RegVolunteer from "./components/RegVolunteer";
 import VolunteerActivities from "./components/VolunteerActivities";
 import Testimonials from "./components/Testimonials";
+import UsersIcon from "./assets/users32.png";
+import Conclusion from "./components/Conclusion"
 
 
 
@@ -47,11 +49,15 @@ function Volunteer() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-8 p-2 ">
           <div className="flex flex-col items-center  m-4">
-            <img
-              src={UserIcon}
-              alt="User Icon"
-              className="w-10 h-10 sm:w-20 sm:h-20"
-            />
+            <div>
+              <div className="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center overflow-hidden ">
+                <img
+                  src={UsersIcon}
+                  alt="User Icon"
+                  className="w-full h-full sm:w-20 sm:h-20 p-4  "
+                />
+              </div>
+            </div>
             <p className="font-bold text-lg">Search Teams</p>
             <p className="text-gray-500">
               Join organized searches in regions across Ethiopia to help find
@@ -59,11 +65,13 @@ function Volunteer() {
             </p>
           </div>
           <div className="flex flex-col items-center  m-4 ">
-            <img
-              src={UserIcon}
-              alt="User Icon"
-              className="w-10 h-10 sm:w-20 sm:h-20"
-            />
+            <div className="bg-sky-800 w-20 h-20 rounded-full flex items-center justify-center overflow-hidden ">
+              <img
+                src={UsersIcon}
+                alt="User Icon"
+                className="w-full h-full sm:w-20 sm:h-20 p-4  "
+              />
+            </div>
             <p className="font-bold text-lg">Flyer Distribution</p>
             <p className="text-gray-500">
               Print and share missing persons posters in markets, schools, and
@@ -71,11 +79,13 @@ function Volunteer() {
             </p>
           </div>
           <div className="flex flex-col items-center  m-4">
-            <img
-              src={UserIcon}
-              alt="User Icon"
-              className="w-10 h-10 sm:w-20 sm:h-20"
-            />
+            <div className="bg-green-800 w-20 h-20 rounded-full flex items-center justify-center overflow-hidden ">
+              <img
+                src={UsersIcon}
+                alt="User Icon"
+                className="w-full h-full sm:w-20 sm:h-20 p-4  "
+              />
+            </div>
             <p className="font-bold text-lg">Social Media</p>
             <p className="text-gray-500">
               Amplifiy cases using hashtags like #FindThemEthiopia on social
@@ -94,7 +104,7 @@ function Volunteer() {
             </p>
             <button
               onClick={() => navigate("/reg-volunteer")}
-              className="bg-blue-900 text-white w-full   "
+              className="bg-sky-800 text-white w-full   "
             >
               Register as Volunteer
             </button>
@@ -122,7 +132,7 @@ function Volunteer() {
               </p>
               <button
                 onClick={handleDownload}
-                className="bg-transparent text-blue-900 w-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white rounded-lg p-2 "
+                className="bg-transparent text-sky-800 w-full border-2 border-sky-800 hover:bg-sky-800 hover:text-white rounded-lg p-2 "
               >
                 Download Volunteer Handbook
               </button>
@@ -132,7 +142,10 @@ function Volunteer() {
             <VolunteerActivities />
           </div>
           <div className=" text-black">
-            <Testimonials/>
+            <Testimonials />
+          </div>
+          <div>
+            <Conclusion/>
           </div>
         </div>
       </div>
