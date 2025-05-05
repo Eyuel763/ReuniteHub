@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Componenets/Layout.jsx";
 import Home from "./Pages/Home.jsx";
-import SubmitForm from "./Pages/SubmitForm.jsx";
+import SubmitForm from "./pages/SubmitForm.jsx";
 import Volunteer from "./Pages/Volunteer.jsx";
 import Resources from "./Pages/Resources.jsx"; // Import the Resources component
 import Error_page from "./pages/Error_page.jsx"; // Import the ErrorPage component
