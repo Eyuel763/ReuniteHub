@@ -60,6 +60,19 @@ class SuccessStoryDetailView(generics.RetrieveAPIView):
     serializer_class = SuccessStorySerializer
     lookup_field = 'missing_person_id'  # Use missing_person's ID for lookup
 
+class SuccessStoryUpdateView(generics.UpdateAPIView):
+    queryset = SuccessStory.objects.all()
+    serializer_class = SuccessStorySerializer
+    permission_classes = [permissions.IsAuthenticated]  #  restrict to authenticated users.
+    lookup_field = 'missing_person_id' # Use missing_person_id
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True) # Use partial=True
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return serializer.data
+
 class UrgentMissingPersonListView(generics.ListAPIView):
     serializer_class = MissingPersonSerializer
 
