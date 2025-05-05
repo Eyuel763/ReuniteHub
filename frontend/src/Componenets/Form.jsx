@@ -5,16 +5,15 @@ import { IoIosClose } from "react-icons/io";
 const Form = () => {
     const [formData, setFormData] = useState({
         name: '',
-        email: '',
         age: '',
         gender: '',
         physicalDescription: '',
         location: '',
+        date: '',
         images: [],
         relationship: '',
-        contactDetails: '',
-        consentToShare: false, // Added consentToShare field
-        blurContactDetails: false, // Added blurContactDetails field
+        contact_info: '',
+        consentToShare: false,
     });
 
     const[loding, setLoading] = useState(false);
@@ -56,14 +55,14 @@ const Form = () => {
         setTimeout(async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/missing_persons/reports/', {
-                    method: 'POST', // Use POST to send data
+                    method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json', // Ensure JSON content type
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(formData), // Convert form data to JSON
+                    body: JSON.stringify(formData),
                 });
     
-                setLoading(false); // Stop loading after the delay and submission
+                setLoading(false);
     
                 if (response.ok) {
                     const result = await response.json();
@@ -77,7 +76,7 @@ const Form = () => {
                 console.error('Error submitting form:', error);
                 setNotification({ message: "An error occurred. Please try again.", type: "error" });
             }
-        }, 2000); // Delay of 2000ms (2 seconds)
+        }, 1000); 
     };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -85,9 +84,6 @@ const Form = () => {
         accept: 'image/*',
     });
 
-    // setTimeout(() => {
-    //     setNotification({ message: "", type: "" });
-    //   }, 5000);
 
     return (
         <>
@@ -130,18 +126,6 @@ const Form = () => {
                             />
                         </div>
                         <div className="m-5">
-                            <label htmlFor="email" className="block font-bold text-left m-2">Your Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="border-2 border-gray-200 p-2 rounded-l w-full focus:outline-none"
-                                
-                            />
-                        </div>
-                        <div className="m-5">
                             <label htmlFor="gender" className="block font-bold text-left m-2">Gender</label>
                             <select
                                 id="gender"
@@ -153,7 +137,6 @@ const Form = () => {
                                 <option value="" disabled>Select gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-                                <option value="other">Other</option>
                             </select>
                         </div>
 
@@ -169,7 +152,7 @@ const Form = () => {
                                 placeholder="• Enter details like height, weight, skin tone, Distinctive features (e.g., scars, tattoos, traditional clothing)."
                             />
                         </div>
-                        <h1 className="text-3xl font-bold my-3.5 text-left">Last Seen</h1>
+                        <h1 className="text-3xl font-bold my-3.5 text-left">Last Seen </h1>
                         <div className="m-5">
                             <label htmlFor="location" className="block font-bold text-left m-2">Location</label>
                             <select
@@ -192,6 +175,19 @@ const Form = () => {
                                 <option value="adama">Adama</option>
                                 <option value="debre-birhan">Debre Birhan</option>
                             </select>
+                        </div>
+                        <div className="m-5">
+                            <label htmlFor="location" className="block font-bold text-left m-2">Date</label>
+                            <input type='date'
+                                id="date"
+                                name="date"
+                                value={formData.date || ''}
+                                onChange={handleChange}
+                                required
+                                className="border-2 border-gray-200 hover:cursor-pointer p-2 rounded-l w-full focus:outline-none">
+
+                            </input>
+
                         </div>
                         <h1 className="text-3xl font-bold my-3.5 text-left">Upload Photos</h1>
                         {showPopup && (
@@ -260,9 +256,9 @@ const Form = () => {
                             <label htmlFor="contactDetails" className="block font-bold text-left m-2">Your Contact Details</label>
                             <input
                                 type="tel"
-                                id="contactDetails"
-                                name="contactDetails"
-                                value={formData.contactDetails || ''}
+                                id="contact_info"
+                                name="contact_info"
+                                value={formData.contact_info || ''}
                                 onChange={handleChange}
                                 required
                                 className="border-2 border-gray-300 p-2 rounded-l w-full focus:outline-none"
@@ -283,18 +279,6 @@ const Form = () => {
                                     }
                                 />
                                 I consent to share this information publicly on ReuniteHub
-                            </label>
-                        </div>
-                        <div className="m-5">
-                            <label className="block text-left hover:cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    name="blurContactDetails"
-                                    className='m-2'
-                                    checked={formData.blurContactDetails || false}
-                                    onChange={(e) =>
-                                        setFormData({ ...formData, blurContactDetails: e.target.checked })}/>
-                                Blur my contact details for safety
                             </label>
                         </div>
                         <button
