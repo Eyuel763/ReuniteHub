@@ -1,7 +1,33 @@
 import React, { useEffect, useState } from "react";
 import UsersIcon from "../assets/users32.png";
+import Doc from "../assets/document.png";
+import Question from "../assets/interrogation.png";
+import School from "../assets/school.png";
 
 const VolunteerActivities = () => {
+
+  const typeStyles = {
+    "Search Party": {
+      icon: UsersIcon, // use your imported icon
+      bgColor: "bg-orange-500",
+    },
+   
+    Training: {
+      icon: School,
+      bgColor: "bg-sky-600",
+    },
+
+    Other: {
+      icon: Question,
+      bgColor: "bg-gray-600",
+    },
+
+    "Flyer Distribution": {
+      icon: Doc,
+      bgColor: "bg-blue-900",
+    },
+  };
+
   const [activities, setActivities] = useState([]);
   const [selectedType, setSelectedType] = useState("All");
 
@@ -62,7 +88,7 @@ const VolunteerActivities = () => {
             onClick={() => setSelectedType(type)}
             className={`px-4 py-2 rounded-full transition-colors duration-200 ${
               selectedType === type
-                ? "bg-sky-500 text-white border-none "
+                ? "bg-sky-700 text-white border-none "
                 : "bg-white text-gray-700  "
             }`}
           >
@@ -76,10 +102,21 @@ const VolunteerActivities = () => {
             key={activity.id}
             className="mb-4 p-4 border rounded-xl shadow-sm bg-white w-full"
           >
-            <p className="bg-sky-600 text-white ml-2 font-bold text-sm mb-2 p-1 pr-2 rounded-full inline-block">
-              <img src={UsersIcon} className="h-6 w-6 inline ml-2 mr-2" />
-              {activity.type}
-            </p>
+            {typeStyles[activity.type] && (
+              <p
+                className={`text-white ml-2 font-bold text-sm mb-2 p-1 pr-2 rounded-full inline-block ${
+                  typeStyles[activity.type].bgColor
+                }`}
+              >
+                <img
+                  src={typeStyles[activity.type].icon}
+                  alt=""
+                  className="h-6 w-6 inline ml-2 mr-2"
+                />
+                {activity.type}
+              </p>
+            )}
+
             <h3 className="text-xl font-bold">{activity.title}</h3>
 
             <p className="mb-2">{activity.description}</p>
